@@ -69,7 +69,7 @@ There is a distinction between structure elements that are block vs inline. A bl
 <div>He said <b>don't</b> cross the beams.</div>
 
 <p>
-  Authors such as <span>ee cummings</span> often used unconventional structure.
+  Authors such as <span>Lee cummings</span> often used unconventional structure.
 </p>
 ```
 
