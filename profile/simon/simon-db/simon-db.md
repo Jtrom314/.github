@@ -37,6 +37,14 @@ Before you can start writing your own code you need to get a MongoDB Atlas accou
 
 Make sure you follow the instruction given previously about providing and protecting your MongoDB credentials using environment variables.
 
+### Your credentials and PM2 
+
+If for some reason your PM2 server will not connect to your database despite being able to connect and interact with your database from your local machine do the following:
+
+ 1. ssh onto your server and run `pm2 stop <service>`
+ 2. run `pm2 restart all --update-env`
+ 3. cd into your simon folder and run `pm2 start index.js -n simon -- 3000`
+
 ## Working with the database
 
 The `database.js` file contains the functions for getting and adding high scores. The database functions are called from the `getScores` and `submitScores` endpoints found in `index.js`.
