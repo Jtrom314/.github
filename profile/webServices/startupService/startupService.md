@@ -43,16 +43,25 @@ Doing this will make this deliverable of your startup available from `https://st
 1. Upload the URL to your startup application to the Canvas assignment.
 
 ## Grading Rubric
+The following are required for your startup to be considered on time to be graded (Note: if one of these requirements are missing, you will be required to resubmit your assignment)
 
-- (Required) Simon Service deployed to your production environment
-- (Required) A link to your GitHub startup repository prominently displayed on your application's home page
+- (Required) Simon HTML deployed successfuly to your production environment
+-    // Can we move the grading of this to be something the TAs grade instead of a self grade? We've had a few students that would say that they deployed Simon but didn't and the TAs often wouldn't check
+- (Required) Startup deployed successfuly to your production environment
+-    // I feel that this is needed since there were quite a few students that submitteded their project to be considered 'on time' that didn't have their startup deployed. I feel that when the students submit, they are telling us that they have checked that everything is ready to go.
+- (Required) All required technologies from previous startup assignments are present
+- (Required) A link to your GitHub startup repository prominently displayed on your application's main page. Your Github must be accessable by every grading TA at the time of submission
 - (Required) Notes in your startup Git repository README.md file documenting what you modified and added with this deliverable. The TAs will only grade things that have been clearly described as being completed. Review the [voter app](https://github.com/webprogramming260/startup-example) as an example.
+-    // Can we enforce this requirement more forcefully this time around or if we aren't going to, can we remove this from what we are expecting the students to do? I find it odd that we say that it is required when we are told to not really care about it when we grade these assignments
+
+After you have completed the above requirements, your startup will be graded on the following critera
 - Backend web service support and interaction
-  - 30% - Create an HTTP service using Node.js and Express
+  - 20% - Create an HTTP service using Node.js and Express
   - 10% - Frontend served up using Express static middleware
   - 10% - Your frontend calls third party service endpoints
   - 20% - Your backend provides service endpoints
   - 20% - Your frontend calls your service endpoints
+  - 10% - Future database data is stored to a temparary location on the backend (i.e., array or object) in preparation for the Database Assignment
 - 10% - Multiple Git commits with meaningful comments.
 
 ## Go celebrate
