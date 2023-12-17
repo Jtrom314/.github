@@ -45,9 +45,18 @@ Doing this will make this deliverable of your startup available from `https://st
 
 ## Grading Rubric
 
-- (Required) Simon DB deployed to your production environment
-- (Required) A link to your GitHub startup repository prominently displayed on your application's home page
-- (Required) Notes in your startup Git repository `README.md` file documenting what you modified and added with this deliverable. The TAs will only grade things that have been clearly described as being completed. Review the [voter app](https://github.com/webprogramming260/startup-example) as an example.
+The following are required for your startup to be considered on time to be graded (Note: if one of these requirements are missing, you will be required to resubmit your assignment)
+
+- (Required) Simon HTML deployed successfuly to your production environment
+-    // Can we move the grading of this to be something the TAs grade instead of a self grade? We've had a few students that would say that they deployed Simon but didn't and the TAs often wouldn't check
+- (Required) Startup deployed successfuly to your production environment
+-    // I feel that this is needed since there were quite a few students that submitteded their project to be considered 'on time' that didn't have their startup deployed. I feel that when the students submit, they are telling us that they have checked that everything is ready to go.
+- (Required) All required technologies from previous startup assignments are present
+- (Required) A link to your GitHub startup repository prominently displayed on your application's main page. Your Github must be accessable by every grading TA at the time of submission
+- (Required) Notes in your startup Git repository README.md file documenting what you modified and added with this deliverable. The TAs will only grade things that have been clearly described as being completed. Review the [voter app](https://github.com/webprogramming260/startup-example) as an example.
+-    // Can we enforce this requirement more forcefully this time around or if we aren't going to, can we remove this from what we are expecting the students to do? I find it odd that we say that it is required when we are told to not really care about it when we grade these assignments
+
+After you have completed the above requirements, your startup will be graded on the following critera
 - Application database support
   - 20% - MongoDB Atlas database created
   - 40% - Provides backend endpoints for manipulating application data
