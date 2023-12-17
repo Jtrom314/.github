@@ -14,7 +14,7 @@ In order to prevent losing users, you want your application to load in about one
 
 For the context of this discussion, latency is defined as the delay that your user experiences before a request is satisfied.
 
-Let's look at each of these performance areas and then we can suggest some tools for measuring and improving the results.
+Let's look at each of these performance areas, and then we can suggest some tools for measuring and improving the results.
 
 ## Browser application latency
 
@@ -22,7 +22,7 @@ Browser application latency is impacted by the speed of the user's device, the a
 
 When a user requests your application in a browser, the browser will request your `index.html` page first. This is followed by requests for any files that `index.html` links, such as JavaScript, CSS, video, and image files. Once your JavaScript is loaded, it will start making requests to services. This includes any endpoints that your provide as well as ones provided by third parties. Each of those requests takes time for the browser to load and render. A page with lots of large images and lots of service calls, will take longer than a page that only loads simple text from a single HTML file.
 
-Likewise if your JavaScript does significant processing while a page is loading, then your user will notice the resulting latency. You want to make application processing as asynchronous as possible so that it is done in the background without impacting the user experience.
+Likewise, if your JavaScript does significant processing while a page is loading, then your user will notice the resulting latency. You want to make application processing as asynchronous as possible so that it is done in the background without impacting the user experience.
 
 You can reduces the impact of file size, and HTTP requests in general, by doing one or more of the following:
 
@@ -35,7 +35,7 @@ You can also reduce the number of requests you make by combining the responses f
 
 ## Network latency
 
-You pay a latency price for every network request that you make. For this reason you want to avoid making unnecessary or large requests.
+You pay a latency price for every network request that you make. For this reason, you want to avoid making unnecessary or large requests.
 
 Network latency is impacted by the amount of data that you send, the amount of data a user can receive per second (this is called bandwidth), and the distance the data has to travel.
 
@@ -53,7 +53,7 @@ You want to reduce the latency of your endpoints as much as possible. Ideally yo
 
 ## Performance tools
 
-📖 **Suggested reading**: [Chrome performance tools](https://developer.chrome.com/docs/devtools/performance/)
+📖 **Deeper dive reading**: [Chrome performance tools](https://developer.chrome.com/docs/devtools/performance/)
 
 ### Chrome network tab
 
@@ -67,7 +67,7 @@ The network tools in the Chrome debugger also allows you to simulate low bandwid
 
 ![Throttle network](webFrameworksThrottleNetwork.jpg)
 
-Throttling while testing is really useful since web developers often have high end computers and significant network bandwidth. That means you are not having the same experience as your users and you will be surprised when they don't use your application because it is so slow.
+Throttling while testing is really useful since web developers often have high end computers and significant network bandwidth. That means you are not having the same experience as your users, and you will be surprised when they don't use your application because it is so slow.
 
 ### Chrome Lighthouse
 
@@ -77,7 +77,7 @@ You can also use the Chrome debugging Lighthouse tool to run an analysis of your
 
 ### Chrome performance tab
 
-When you are ready to dig into your application's front end performance make sure you experiment with the Chrome debugger's performance tab. This breaks down the details of your application based upon discrete intervals of time so that you can isolate where things are running slow.
+When you are ready to dig into your application's frontend performance make sure you experiment with the Chrome debugger's performance tab. This breaks down the details of your application based upon discrete intervals of time so that you can isolate where things are running slow.
 
 ![Performance tab](webFrameworksChromePerformanceTab.jpg)
 
@@ -95,4 +95,4 @@ This tool provided by [DotComTools](https://www.dotcom-tools.com) allows you to 
 
 ![DotCom Tools](webFrameworksDotComTools.jpg)
 
-Here you can see we perform acceptably from the United States and Europe, but are struggling in Asia. That makes sense considering that our server is located in Ohio. In order to correct this, we need to use a Content Delivery Network (CDN) with an additional location closer to our target users in China.
+Here you can see we perform acceptably from the United States and Europe, but are struggling in Asia. That makes sense considering that our server is located in North Virginia. In order to correct this, we need to use a Content Delivery Network (CDN) with an additional location closer to our target users in China.

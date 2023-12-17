@@ -1,13 +1,13 @@
 # JavaScript rest and spread
 
-📖 **Suggested reading**:
+📖 **Deeper dive reading**:
 
 - [MDN Rest](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters)
 - [MDN Spread](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
 
 ## Rest
 
-Sometimes you want a function to take an unknown number of parameters. For example, if you wanted to write a function that checks to see if some number in a list is equal to a given number. You could write this using an array.
+Sometimes you want a function to take an unknown number of parameters. For example, if you wanted to write a function that checks to see if some number in a list is equal to a given number, you could write this using an array.
 
 ```js
 function hasNumber(test, numbers) {
@@ -27,7 +27,7 @@ function hasTwo(a, b, c) {
 }
 ```
 
-But JavaScript provides the `rest` syntax to make this easier. Think of it as a parameter that contains the `rest` of the parameters. To turn the last parameter of any function into a `rest` parameter you prefix it with three periods. You can then you can call it with any number of parameters and they are all automatically combined into an array.
+But JavaScript provides the `rest` syntax to make this easier. Think of it as a parameter that contains the `rest` of the parameters. To turn the last parameter of any function into a `rest` parameter you prefix it with three periods. You can then call it with any number of parameters and they are all automatically combined into an array.
 
 ```js
 function hasNumber(test, ...numbers) {
@@ -55,9 +55,3 @@ const p = person(...['Ryan', 'Dahl']);
 console.log(p);
 // OUTPUT: {first: 'Ryan', last: 'Dahl'}
 ```
-
-## ☑ Assignment
-
-Create a CodePen that uses both rest and spread.
-
-When you are done submit your CodePen URL, along with a comment about something you found interesting, to the Canvas assignment.

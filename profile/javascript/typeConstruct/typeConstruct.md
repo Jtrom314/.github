@@ -1,6 +1,6 @@
 # JavaScript type and construct
 
-📖 **Suggested reading**: [MDN Data types and structures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures)
+📖 **Deeper dive reading**: [MDN Data types and structures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures)
 
 ## Declaring variables
 
@@ -12,42 +12,42 @@ let x = 1;
 const y = 2;
 ```
 
-⚠ Originally JavaScript used the keyword `var` to define variables. This has been deprecated because they cause hard to detect errors in code related to the scope of the variable. You should avoid `var` and always declare your variables either with `let` or `const`.
+⚠ Originally JavaScript used the keyword `var` to define variables. This has been deprecated because they cause hard-to-detect errors in code related to the scope of the variable. You should avoid `var` and always declare your variables either with `let` or `const`.
 
 ## Type
 
-JavaScript defines several primitives types.
+JavaScript defines several primitive types.
 
 | Type        | Meaning                                                    |
 | ----------- | ---------------------------------------------------------- |
 | `Null`      | The type of a variable that has not been assigned a value. |
 | `Undefined` | The type of a variable that has not been defined.          |
 | `Boolean`   | true or false.                                             |
-| `Number`    | A 64 bit signed number.                                    |
+| `Number`    | A 64-bit signed number.                                    |
 | `BigInt`    | A number of arbitrary magnitude.                           |
 | `String`    | A textual sequence of characters.                          |
 | `Symbol`    | A unique value.                                            |
 
-Of these types Boolean, Number, and String are the types commonly thought of when creating variables. However, variables may commonly refer to the Null or Undefined primitive. Because JavaScript does not enforce the declaration of a variable before you use it, it is entirely possible for a variable to have the type of undefined.
+Of these types Boolean, Number, and String are the types commonly thought of when creating variables. However, variables may commonly refer to the Null or Undefined primitive. Because JavaScript does not enforce the declaration of a variable before you use it, it is entirely possible for a variable to have the type of Undefined.
 
-In addition to the above primitives, JavaScript defines several object types. Some of the more commonly used objects include the following.
+In addition to the above primitives, JavaScript defines several object types. Some of the more commonly used objects include the following:
 
 | Type       | Use                                                                                    | Example                  |
 | ---------- | -------------------------------------------------------------------------------------- | ------------------------ |
-| `Object`   | A collection of properties represented by name value pairs. Values can be of any type. | `{a:3, b:'fish'}`        |
+| `Object`   | A collection of properties represented by name-value pairs. Values can be of any type. | `{a:3, b:'fish'}`        |
 | `Function` | An object that has the ability to be called.                                           | `function a() {}`        |
 | `Date`     | Calendar dates and times.                                                              | `new Date('1995-12-17')` |
 | `Array`    | An ordered sequence of any type.                                                       | `[3, 'fish']`            |
-| `Map`      | A collection of key value pairs that support efficient lookups.                        | `new Map()`              |
+| `Map`      | A collection of key-value pairs that support efficient lookups.                        | `new Map()`              |
 | `JSON`     | A lightweight data-interchange format used to share information across programs.       | `{"a":3, "b":"fish"}`    |
 
 ## Common operators
 
-When dealing with a number variable, JavaScript supports standard mathematical operators like `+` (add), `-` (subtract), `*` (multiply), `/` (divide), and `===` (equality). For string variables, JavaScript support `+` (concatenation) and `===` (equality).
+When dealing with a number variable, JavaScript supports standard mathematical operators like `+` (add), `-` (subtract), `*` (multiply), `/` (divide), and `===` (equality). For string variables, JavaScript supports `+` (concatenation) and `===` (equality).
 
 ## Type conversions
 
-JavaScript is a weakly typed language. That means that a variable always has a type, but the variable can change type when it is assigned a new value, or that types can be automatically converted based upon the context that they are used in. Sometime the results of automatic conversions can be unexpected from programmers who are use to strongly typed languages. Consider the following examples.
+JavaScript is a weakly typed language. That means that a variable always has a type, but the variable can change type when it is assigned a new value, or that types can be automatically converted based upon the context that they are used in. Sometimes the results of automatic conversions can be unexpected from programmers who are used to strongly typed languages. Consider the following examples.
 
 ```js
 2 + '3';
@@ -73,7 +73,7 @@ null == undefined;
 // OUTPUT: true
 ```
 
-⚠ The unexpected results happen in JavaScript because it uses [complex rules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness#strict_equality_using) for defining equality that depend upon the conversion of a type to a boolean value. You will sometimes hear this referred to as [falsy](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) and truthy evaluations. To remove this confusion, JavaScript introduced the strict equality (===) and inequality (!==) operators. The strict operators skip the type conversion when computing equality. This results in the following.
+⚠ The unexpected results happen in JavaScript because it uses [complex rules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness#strict_equality_using) for defining equality that depend upon the conversion of a type to a boolean value. You will sometimes hear this referred to as [falsy](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) and [truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) evaluations. To remove this confusion, JavaScript introduced the strict equality (===) and inequality (!==) operators. The strict operators skip the type conversion when computing equality. This results in the following.
 
 ```js
 1 === '1';
@@ -94,7 +94,7 @@ Here is a fun example of JavaScript's type conversion. Execute the following in 
 
 ## Conditionals
 
-JavaScript support many common programming language conditional constructs. This includes `if`, `else`, and `if else`. Here are some examples.
+JavaScript supports many common programming language conditional constructs. This includes `if`, `else`, and `if else`. Here are some examples.
 
 ```js
 if (a === 1) {
@@ -122,7 +122,7 @@ if (true && (!false || true)) {
 
 ### Loops
 
-JavaScript support many common programming language looping constructs. This includes `for`, `for in`, `for of`, `while`, `do while`, and `switch`. Here are some examples.
+JavaScript supports many common programming language looping constructs. This includes `for`, `for in`, `for of`, `while`, `do while`, and `switch`. Here are some examples.
 
 ### for
 
@@ -211,9 +211,3 @@ while (true) {
 }
 // OUTPUT: 0 1
 ```
-
-## ☑ Assignment
-
-Create a CodePen that uses conditional and loop statements.
-
-When you are done submit your CodePen URL, along with a comment about something you found interesting, to the Canvas assignment.

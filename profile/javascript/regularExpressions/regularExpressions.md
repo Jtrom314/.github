@@ -1,6 +1,6 @@
 # JavaScript regular expressions
 
-📖 **Suggested reading**: [MDN Regular expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions)
+📖 **Deeper dive reading**: [MDN Regular expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions)
 
 Regular expression support is built right into JavaScript. If you are not familiar with regular expressions, you can think of them as textual pattern matchers. You use a regular expression to find text in a string so that you can replace it, or simply to know that it exists.
 
@@ -26,9 +26,3 @@ text.replace(petRegex, 'animal');
 petRegex.test(text);
 // RETURNS: true
 ```
-
-## ☑ Assignment
-
-Create a CodePen that uses regular expressions.
-
-When you are done submit your CodePen URL, along with a comment about something you found interesting, to the Canvas assignment.

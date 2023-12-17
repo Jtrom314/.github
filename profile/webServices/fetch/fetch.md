@@ -1,6 +1,6 @@
 # Fetch
 
-📖 **Required reading**: [MDN Using the Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
+🔑 **Recommended reading**: [MDN Using the Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
 
 The ability to make HTTP requests from JavaScript is one of the main technologies that changed the web from static content pages (Web 1.0) to one of web applications (Web 2.0) that fully interact with the user. Microsoft introduced the first API for making HTTP requests from JavaScript with the [XMLHttpRequest API](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest).
 
@@ -53,12 +53,12 @@ Create a fork of this [CodePen](https://codepen.io/leesjensen/pen/ExRoqPz) and e
 
 Replace the quotable service call with a different one. Here are some suggestions.
 
-- **Quote** - https://api.quotable.io/random
 - **Random user** - https://randomuser.me/api/
 - **Jokes** - https://api.chucknorris.io/jokes/random
 - **GitHub user** - https://api.github.com/users/octocat
 - **Photos** - https://picsum.photos/id/0/info
+- **Quote** - https://api.quotable.io/random
 
-When you are done submit your CodePen URL, along with a comment about something you found interesting, to the Canvas assignment.
+When you are done submit your CodePen URL to the Canvas assignment.
 
-Don't forget to update your GitHub start up repository README.md with all of the things you learned and want to remember.
+Don't forget to update your GitHub startup repository notes.md with all of the things you learned and want to remember.

@@ -100,14 +100,15 @@ Follow these steps, and then add in the code from the sections that follow. Ther
 
 1. Create a directory called `authTest` that we will work in.
 1. Save the above content to a file named `main.js`. This is our starting web service.
-1. Run `npm init -y` to initial the project to work with node.js.
+1. Run `npm init -y` to initialize the project to work with node.js.
 1. Run `npm install express cookie-parser mongodb uuid bcrypt` to install all of the packages we are going to use.
 1. Run `node main.js` or press `F5` in VS Code to start up the web service.
-1. You can now open a console window and use curl to try out one of the endpoints.
+1. You can now open a console window and use `curl` to try out one of the endpoints.
 
    ```sh
-   ➜  curl -X POST localhost:8080/auth/create
-
+   curl -X POST localhost:8080/auth/create
+   ```
+   ```sh
    {"id":"user@id.com"}
    ```
 
@@ -128,8 +129,9 @@ app.post('/auth/create', (req, res) => {
 ```
 
 ```sh
-➜  curl -X POST localhost:8080/auth/create -H 'Content-Type:application/json' -d '{"email":"marta@id.com", "password":"toomanysecrets"}'
-
+curl -X POST localhost:8080/auth/create -H 'Content-Type:application/json' -d '{"email":"marta@id.com", "password":"toomanysecrets"}'
+```
+```sh
 {"id":"user@id.com","email":"marta@id.com","password":"toomanysecrets"}
 ```
 
@@ -150,18 +152,18 @@ app.post('/auth/create', async (req, res) => {
 
 ## Using the database
 
-We want to persistently store our users in Mongo and so we need to set up our code to connect to and use the database. This code is explained in the instruction on data services if you want to review what it is doing.
+We want to persistently store our users in Mongo and so we need to set up our code to connect to and use the database. This code is explained in the instruction on [data services](../dataServices/dataServices.md) if you want to review what it is doing.
 
 ```js
 const { MongoClient } = require('mongodb');
 
-const userName = process.env.MONGOUSER;
-const password = process.env.MONGOPASSWORD;
-const hostname = process.env.MONGOHOSTNAME;
+const userName = 'holowaychuk';
+const password = 'express';
+const hostname = 'mongodb.com';
 
 const url = `mongodb+srv://${userName}:${password}@${hostname}`;
+
 const client = new MongoClient(url);
-const collection = client.db('authTest').collection('user');
 ```
 
 With a Mongo collection object we can implement the `getUser` and `createUser` functions.
@@ -181,7 +183,7 @@ async function createUser(email, password) {
 }
 ```
 
-But, we are missing a couple of things. We need to a real authentication token, and we cannot simply store a clear text password in our database.
+But, we are missing a couple of things. We need a real authentication token, and we cannot simply store a clear text password in our database.
 
 ## Generating authentication tokens
 
@@ -199,7 +201,7 @@ Next we need to securely store our passwords. Failing to do so is a major securi
 
 So instead of storing the password directly, we want to cryptographically hash the password so that we never store the actual password. When we want to validate a password during login, we can hash the login password and compare it to our stored hash of the password.
 
-To hash our passwords we will use the `bcrypt` package. This creates a very secure one way hash of the password. If you are interested in understanding how [bcrypt](https://en.wikipedia.org/wiki/Bcrypt) works, it is definitely worth the time.
+To hash our passwords we will use the `bcrypt` package. This creates a very secure one-way hash of the password. If you are interested in understanding how [bcrypt](https://en.wikipedia.org/wiki/Bcrypt) works, it is definitely worth the time.
 
 ```js
 const bcrypt = require('bcrypt');
@@ -223,7 +225,7 @@ async function createUser(email, password) {
 
 We now need to pass our generated authentication token to the browser when the login endpoint is called, and get it back on subsequent requests. To do this we use HTTP cookies. The `cookie-parser` package provides middleware for cookies and so we will leverage that.
 
-We import the `cookieParser` object and then tell our app to use it. When a user is successfully created, or logs in, we set the cookie header. Since we are storing an authentication token in the cookie we want to make it as secure as possible, and so we use the `httpOnly`, `secure`, and `sameSite` options.
+We import the `cookieParser` object and then tell our app to use it. When a user is successfully created, or logs in, we set the cookie header. Since we are storing an authentication token in the cookie, we want to make it as secure as possible, and so we use the `httpOnly`, `secure`, and `sameSite` options.
 
 - `httpOnly` tells the browser to not allow JavaScript running on the browser to read the cookie.
 - `secure` requires HTTPS to be used when sending the cookie back to the server.
@@ -235,11 +237,11 @@ const cookieParser = require('cookie-parser');
 // Use the cookie parser middleware
 app.use(cookieParser());
 
-app.post('/auth/create', async (req, res) => {
-  if (await getUser(req.body.email)) {
+apiRouter.post('/auth/create', async (req, res) => {
+  if (await DB.getUser(req.body.email)) {
     res.status(409).send({ msg: 'Existing user' });
   } else {
-    const user = await createUser(req.body.email, req.body.password);
+    const user = await DB.createUser(req.body.email, req.body.password);
 
     // Set the cookie
     setAuthCookie(res, user.token);
@@ -305,9 +307,9 @@ const cookieParser = require('cookie-parser');
 const express = require('express');
 const app = express();
 
-const userName = process.env.MONGOUSER;
-const password = process.env.MONGOPASSWORD;
-const hostname = process.env.MONGOHOSTNAME;
+const userName = 'holowaychuk';
+const password = 'express';
+const hostname = 'mongodb.com';
 
 const url = `mongodb+srv://${userName}:${password}@${hostname}`;
 const client = new MongoClient(url);
@@ -383,28 +385,27 @@ app.listen(port, function () {
 });
 ```
 
-## Testing it out
+## Experiment
 
-With everything implemented we can use curl to try it out. First start up the web service from VS Code by pressing `F5` and selecting `node.js` as the debugger if you have not already done that. You can set breakpoints on all of the different endpoints to see what they do and inspect the different variables. Then open a console window and run the following curl commands. You should see similar results as what is shown below. Note that the `-c` and `-b` parameters tell curl to store and use cookies with the given file.
+With everything implemented we can use `curl` to try it out. First start up the web service from VS Code by pressing `F5` and selecting `node.js` as the debugger if you have not already done that. You can set breakpoints on all of the different endpoints to see what they do and inspect the different variables. Then open a console window and run the following `curl` commands. You should see similar results as what is shown below. Note that the `-c` and `-b` parameters tell curl to store and use cookies with the given file.
 
 ```sh
-➜  curl -X POST localhost:8080/auth/create -H 'Content-Type:application/json' -d '{"email":"지안@id.com", "password":"toomanysecrets"}'
-
+curl -X POST localhost:8080/auth/create -H 'Content-Type:application/json' -d '{"email":"지안@id.com", "password":"toomanysecrets"}'
+```
+```sh
 {"id":"639bb9d644416bf7278dde44"}
-
-
-➜  curl -c cookie.txt -X POST localhost:8080/auth/login -H 'Content-Type:application/json' -d '{"email":"지안@id.com", "password":"toomanysecrets"}'
-
-{"id":"639bb9d644416bf7278dde44"}
-
-
-➜  curl -b cookie.txt localhost:8080/user/me
-
-{"email":"지안@id.com"}
 ```
 
-# ☑ Assignment
+```sh
+curl -c cookie.txt -X POST localhost:8080/auth/login -H 'Content-Type:application/json' -d '{"email":"지안@id.com", "password":"toomanysecrets"}'
+```
+```sh
+{"id":"639bb9d644416bf7278dde44"}
+```
 
-Get a web service that supports authentication running in your development environment by running the code above. You do not need to implement anything new. You should just use this as an opportunity to learn how basic authentication works so that you can implement it with your Simon and start up applications.
-
-When you have it working, run the curl commands from the `testing it out` section and copy the results, along with a comment about something you found interesting, to the Canvas assignment.
+```sh
+curl -b cookie.txt localhost:8080/user/me
+```
+```sh
+{"email":"지안@id.com"}
+```

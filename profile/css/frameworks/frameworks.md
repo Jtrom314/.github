@@ -10,21 +10,20 @@ Today, there are lots of different open source CSS frameworks available to choos
 
 ## Tailwind
 
-A new rising contender in the CSS framework space is [Tailwind CSS](https://tailwindcss.com/) and its associated component library [Tailwind UI](https://tailwindui.com/). In the last StateOfCSS poll, Tailwind gained an impressive 40% general usage ranking, all within the last three years. Tailwind takes a different approach than traditional CSS frameworks. Instead of using large, rich, CSS rulesets to compartmentalize styling and functionality, it uses smaller definitions that are applied specifically to individual HTML elements. This moves much of the CSS representation out of the CSS file and directly into the HTML.
+A new rising contender in the CSS framework space is [Tailwind CSS](https://tailwindcss.com/) and its associated component library [Tailwind UI](https://tailwindui.com/). In the 2022 StateOfCSS poll, Tailwind gained an impressive 46% general usage ranking with a retention rating of 78%, all within the last four years.
+
+Tailwind takes a different approach than traditional CSS frameworks. Instead of using large, rich, CSS rulesets to compartmentalize styling and functionality, it uses smaller definitions that are applied specifically to individual HTML elements. This moves much of the CSS representation out of the CSS file and directly into the HTML.
 
 ```html
 <div class="pt-6 md:p-8 text-center md:text-left space-y-4">
-  <img
-    class="w-24 h-24 md:w-48 md:h-auto md:rounded-none rounded-full mx-auto"
-    src="profile.png"
-  />
+  <img class="w-24 h-24 md:w-48 md:h-auto md:rounded-none rounded-full mx-auto" src="profile.png" />
   <p class="text-lg font-medium">“Tailwind CSS”</p>
 </div>
 ```
 
 ## Bootstrap
 
-📖 **Required reading**: [Getting started with Bootstrap](https://getbootstrap.com/docs/5.2/getting-started/introduction/)
+🔑 **Required reading**: [Getting started with Bootstrap](https://getbootstrap.com/docs/5.2/getting-started/introduction/)
 
 The reigning champion for CSS frameworks is [Bootstrap](https://getbootstrap.com/). Bootstrap has been supported by an active and vibrant community for over a decade and contains many lessons learned from real world applications. The major downside of Bootstrap is its own success. Because it is so popular, Bootstrap defines the de facto look and feel of websites. This is great for user experience continuity, but it makes it difficult for a website to grab the attention of new users.
 
@@ -50,7 +49,7 @@ You can integrate Bootstrap into your web applications simply by referencing the
 </html>
 ```
 
-If you are going to use Bootstrap components that require JavaScript (carousel, buttons, and more), you will also need to include Bootstrap's JavaScript module. You add this by putting the following at the end of your HTML body element.
+If you are going to use Bootstrap components that require JavaScript (carousel, buttons, and more), you will also need to include Bootstrap's JavaScript module. You add this by putting the following at **the end** of your HTML body element.
 
 ```html
 <body>
@@ -64,7 +63,7 @@ If you are going to use Bootstrap components that require JavaScript (carousel, 
 </body>
 ```
 
-Later on, when we introduce the idea of bundling your application, you will want to use the Node Package Manager (NPM) to download Bootstrap and include it in your source code so that you don't have to rely on someone else's server to provide you with a vital piece of your application. To include Bootstrap in your application using NPM you would run the following from your console.
+You don't need to worry about this now, but later on, when we introduce the downloading of JavaScript packages, you can use the Node Package Manager (NPM) to download Bootstrap and include it in your source code. That way you don't have to rely on someone else's server to provide you with a vital piece of your application. For future reference, to include Bootstrap in your application using NPM you would run the following from your console.
 
 ```sh
 npm install bootstrap@5.2.3
@@ -77,7 +76,10 @@ npm install bootstrap@5.2.3
 Once you have Bootstrap linked in your HTML files you can begin using the components it provides. Let's start with a simple button. When we use the Bootstrap `btn` CSS class, the button gets a nice looking rounded appearance. The Bootstrap `btn-primary` CSS class shades the button with the current primary color for the application, which by default is blue. The following demonstrates the difference between a Bootstrap style button and a plain vanilla button. Functionally they both work exactly the same. The Bootstrap button is just a lot easier on the eyes.
 
 ```html
+// Bootstrap styled button
 <button type="button" class="btn btn-primary">Bootstrap</button>
+
+// Default browser styled button
 <button type="button">Plain</button>
 ```
 
@@ -89,4 +91,15 @@ This [CodePen](https://codepen.io/leesjensen/pen/JjZavjW) demonstrates the use o
 
 ## ☑ Assignment
 
-Now that you have experience with Bootstrap you can build a simple home page using Bootstrap components. Fork this [CodePen](https://codepen.io/leesjensen/pen/wvXEmVQ) and experiment with it. Remove the components it demonstrates and replace it with some other Bootstrap components. When you are done upload the URL of your CodePen with a description of what you found interesting to the Canvas assignment.
+Now that you have experience with Bootstrap you can build a simple home page using Bootstrap components. Fork this [CodePen](https://codepen.io/leesjensen/pen/wvXEmVQ) and experiment with it.
+
+Complete the following:
+
+1. Remove the block titled Typography
+1. Insert an accordion component
+
+It should look like this when you are done.
+
+![Bootstrap assignment](bootstrapAssignment.png)
+
+Once you are successful upload the URL of your CodePen to the Canvas assignment.

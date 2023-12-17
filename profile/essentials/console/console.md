@@ -1,22 +1,34 @@
 # The Console
 
-📖 **Required reading**: [MDN Command line crash course](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Command_line)
+📖 **Deeper dive reading**: [MDN Command line crash course](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Command_line)
 
 Before the creation of graphical user interfaces, all computing systems were simple console environments consisting as of a prompt for inputting a command and the display of the command output. All of the original programming tools ran as console application. The console tradition is still actively used by professional developers and most programming tools execute within a console window.
 
-Also know as the command line, shell, or terminal, the console window is an essential web development tool. The console provides access to the file system and allows for the execution of command line applications.
+Also known as the command line, shell, or terminal, the console window is an essential web development tool. The console provides access to the file system and allows for the execution of command line applications.
 
 There are many console applications that you can chose from. All operating systems come with a default console, but you will probably want to install one in order to get the best experience. Here is an example of [Warp](https://www.warp.dev/) running on a Mac.
 
-<img src="warp.png" >
+![Warp](warp.png)
 
 ## Make sure you have a console application
 
-In order for you to successfully use the console for web programming it must be [POSIX](https://en.wikipedia.org/wiki/POSIX) compliant. POSIX compliance means that it supports a standard set of console commands. Both Mac and Linix support POSIX. That means any necessary console commands will work on those operating systems. On Microsoft Windows, you can get a reasonable approximation of a POSIX compliant console by installing [Git Bash](https://git-scm.com/download/win).
+In order for you to successfully use the console for web programming it must be [POSIX](https://en.wikipedia.org/wiki/POSIX) compliant. POSIX compliance means that it supports a standard set of console commands. Both Mac and Linix support POSIX. That means any necessary console commands will work on those operating systems.
 
-⚠ If you are using Windows and do not already have a POSIX compliant console application installed, then install [Git Bash](https://git-scm.com/download/win) before continuing. When installing use all the default settings.
+## Getting a console application for Windows
 
-Open your console application and make sure you can run a simple POSIX compliant command such as `printf 'hello\n'`.
+If you are using Microsoft Windows you can get a reasonable approximation of a POSIX compliant console by installing [Git Bash](https://git-scm.com/download/win). When installing use all the default settings.
+
+Once it is installed, hit the Windows button on your keyboard, and type `Git Bash`. This should open a console window that looks something like the following. Make sure you look for the `Git Bash` icon so that you don't accidentally use an non-POSIX compatible console application.
+
+![Git Bash](gitBash.jpg)
+
+⚠ Do not use `Git Command`, `cmd`, or `Powershell`. That will not work for the commands and scripts we run in this class.
+
+You can use Windows Subsystem for Linux (WSL) (e.g Ubuntu on Windows) for your work in this class, but you must be very careful to do all of your work actually within WSL. Don't download files to your Windows partition and then access them from WSL. It is suggested that you use `Git Bash` instead of WSL, unless you are really familiar with WSL.
+
+### Testing your console application
+
+Once you have a acceptable console application on your development computer, open it up and make sure you can run a simple POSIX compliant command such as `printf 'hello\n'`.
 
 ![Console printf](consolePrintf.jpg)
 
@@ -94,28 +106,26 @@ There are also keystrokes that have special meaning in the console.
 
 ## ☑ Assignment
 
-Experiment with console commands. Open a console window and create a junk directory that you can play with by executing the command `mkdir junk` (make directory). Then execute the command `cd junk` to change into that directory. Try the following sequence of commands:
+Experiment with console commands. Open a console window and create a test directory that you can play with by executing the command `mkdir test` (make directory). Then execute the command `cd test` to change into that directory. Then execute the following sequence of commands:
 
 ```sh
-mkdir junk
-cd junk
+mkdir test
+cd test
 pwd
 ls
 ls -la
 ls ../
-echo "hello world" > test.txt
+printf "x" > test.txt
 ls -l
 cat test.txt
 cp test.txt other.txt
 ls
 cat test.txt >> other.txt
-less other.txt # press `q` to exit less
 rm test.txt
-ls
-cd ..
-ls
-rm -rf junk
-ls
+less other.txt # press `q` to exit less
+for i in {1..2}; do printf 'y' >> other.txt; done;
 ```
 
-The better you get at working with the console the more efficient your programming will be. When you are done experimenting, submit a description of something you found interesting to the Canvas assignment.
+Once you have done this, go over to the assignments page in Canvas and submit the text that results from running `cat other.txt`.
+
+The better you get at working with the console the more efficient your programming will be.

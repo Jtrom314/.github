@@ -16,22 +16,22 @@ npm install express
 code .
 ```
 
-Now create a file named `server.js` and use Express to create an application with two endpoints. One to get a store (getStore), and another to update a store.
+Now create a file named `server.js` and use Express to create an application with two endpoints: one to get a store (getStore), and another to update a store.
 
 **server.js**
 
 ```js
-const express = require("express");
+const express = require('express');
 const app = express();
 
 app.use(express.json());
 
 // Endpoints
-app.get("/store/:storeName", (req, res) => {
+app.get('/store/:storeName', (req, res) => {
   res.send({ name: req.params.storeName });
 });
 
-app.put("/store/:storeName", (req, res) => {
+app.put('/store/:storeName', (req, res) => {
   req.body.updated = true;
   res.send(req.body);
 });
@@ -39,12 +39,12 @@ app.put("/store/:storeName", (req, res) => {
 module.exports = app;
 ```
 
-In order to allow Jest to start up the HTTP server when running tests, we initialize the application a little bit differently than we have in the past. Normally, we would have just started listening on the Express app object after we defined our endpoints. Instead we export the Express app object from our `server.js` file and then import the app object in the `index.js` file that is used to run our service.
+In order to allow Jest to start up the HTTP server when running tests, we initialize the application a little bit differently than we have in the past. Normally, we would have just started listening on the Express `app` object after we defined our endpoints. Instead we export the Express `app` object from our `server.js` file and then import the app object in the `index.js` file that is used to run our service.
 
 **index.js**
 
 ```js
-const app = require("./server");
+const app = require('./server');
 
 const port = 8080;
 app.listen(port, function () {
@@ -52,7 +52,11 @@ app.listen(port, function () {
 });
 ```
 
-Breaking apart the definition of the service from the starting of the service allows us to start the service both when we run normally and also when using our testing framework. You can test that the service is working properly by running the service in the VS Code debugger and pressing F5 while viewing the index.js file. Then open a browser and navigate to `http://localhost:8080/store/provo`. Stop the debugging session once you have demonstrated that the service is working correctly.
+Breaking apart the definition of the service from the starting of the service allows us to start the service both when we run normally and also when using our testing framework.
+
+![Jest endpoint requests](endpointTestingJest.jpg)
+
+You can test that the service is working properly by running the service in the VS Code debugger and pressing F5 while viewing the `index.js` file. Then open a browser and navigate to `http://localhost:8080/store/provo`. Stop the debugging session once you have demonstrated that the service is working correctly.
 
 To launch the service using Jest we create another file that has a suffix of `.test.js`. Any file with that suffix is considered a testing file and will automatically be discovered by Jest and examined for tests to run.
 
@@ -65,12 +69,12 @@ Let's make our first test by creating a file named `store.test.js` and pasting i
 **store.test.js**
 
 ```js
-test("that equal values are equal", () => {
+test('that equal values are equal', () => {
   expect(false).toBe(true);
 });
 ```
 
-The `test` function takes a description as the first parameter. The description is meant to be human readable. In this case it reads: "test that equal values are equal". The second parameter is the function to call. Our function just calls the Jest `expect` function and chains it to the `toBe` function. You can read this as "expect false to be true", which is of course is not true, but we want to see our test fail the first time we run it. We will fix this later so that we can show what happens when a test succeeds.
+The `test` function takes a description as the first parameter. The description is meant to be human readable. In this case it reads: "test that equal values are equal". The second parameter is the function to call. Our function just calls the Jest `expect` function and chains it to the `toBe` function. You can read this as "expect false to be true", which of course is not true, but we want to see our test fail the first time we run it. We will fix this later so that we can show what happens when a test succeeds.
 
 In order to run the test we need to install the Jest package using NPM. From the console install the package. The `-D` parameter tells NPM to install Jest as a development package. That keeps it from being included when we do production release builds.
 
@@ -119,7 +123,7 @@ We can then fix our test by rewriting it so that the expected value matches the 
 **store.test.js**
 
 ```js
-test("that equal values are equal", () => {
+test('that equal values are equal', () => {
   expect(true).toBe(true);
 });
 ```
@@ -145,23 +149,23 @@ To test our endpoints we need another package so that we can make HTTP requests 
 npm install supertest -D
 ```
 
-We can then alter `store.test.js` to import our Express service and also the request function from supertest that we will use to make HTTP requests.
+We can then alter `store.test.js` to import our Express service and also the `request` function from `supertest` that we will use to make HTTP requests.
 
-To make an HTTP request you pass the Express app to the supertest request function and then chain on the HTTP verb function that you want to call, along with the endpoint path. You can then chain on as many `expect` functions as you would like. In the following example we will expect an HTTP status code of 200 (OK), and that the body of the response contains the object that we expect the endpoint to return.
+To make an HTTP request you pass the Express `app` to the `supertest` `request` function and then chain on the HTTP verb function that you want to call, along with the endpoint path. You can then chain on as many `expect` functions as you would like. In the following example we will expect an HTTP status code of 200 (OK), and that the body of the response contains the object that we expect the endpoint to return.
 
 If something goes wrong, the `end` function will contain an error and we pass the error along to the `done` function. Otherwise we just call `done` without the error.
 
 **store.test.js**
 
 ```js
-const request = require("supertest");
-const app = require("./server");
+const request = require('supertest');
+const app = require('./server');
 
-test("getStore returns the desired store", (done) => {
+test('getStore returns the desired store', (done) => {
   request(app)
-    .get("/store/provo")
+    .get('/store/provo')
     .expect(200)
-    .expect({ name: "provo" })
+    .expect({ name: 'provo' })
     .end((err) => (err ? done(err) : done()));
 });
 ```
@@ -182,28 +186,28 @@ Time:        0.237 s, estimated 1 s
 
 You can change the test to expect a status code of 500 (Server Error) if you want to see the test fail. You can also change the endpoint code to return a 201 status code (Created) and also see the test fail.
 
-Now We can add a test for the updateStore endpoint. To do this we can copy the getStore endpoint, change the description, change the HTTP function verb to `put`, and send the body of the put request using the chained `send` function.
+Now we can add a test for the updateStore endpoint. To do this we can copy the getStore endpoint, change the description, change the HTTP function verb to `put`, and send the body of the `put` request using the chained `send` function.
 
 ```js
-const request = require("supertest");
-const app = require("./server");
+const request = require('supertest');
+const app = require('./server');
 
-test("updateStore saves the correct values", (done) => {
+test('updateStore saves the correct values', (done) => {
   request(app)
-    .put("/store/provo")
-    .send({ items: ["fish", "milk"] })
+    .put('/store/provo')
+    .send({ items: ['fish', 'milk'] })
     .expect(200)
-    .expect({ items: ["fish", "milk"], updated: true })
+    .expect({ items: ['fish', 'milk'], updated: true })
     .end((err) => (err ? done(err) : done()));
 });
 
-test("getStore returns the desired store", (done) => {
+test('getStore returns the desired store', (done) => {
   request(app)
-    .get("/store/provo")
+    .get('/store/provo')
     .expect(200)
-    .expect({ name: "provo" })
+    .expect({ name: 'provo' })
     .end((err) => (err ? done(err) : done()));
 });
 ```
 
-The great thing about test driven development (TDD) is that you can actually write your tests first and then write your code based upon the design represented by the tests. When your tests pass you know your code is complete. Additionally, when you make later modifications to your code you can simply run your tests again. If they pass then you can be confident that your code is still working without having to manually test everything yourself. With systems that have hundreds of endpoints and hundreds of thousands of lines of code, TDD becomes an indispensible part of the development process.
+The great thing about test driven development (TDD) is that you can actually write your tests first and then write your code based upon the design represented by the tests. When your tests pass you know your code is complete. Additionally, when you make later modifications to your code you can simply run your tests again. If they pass then you can be confident that your code is still working without having to manually test everything yourself. With systems that have hundreds of endpoints and hundreds of thousands of lines of code, TDD becomes an indispensable part of the development process.

@@ -1,14 +1,14 @@
 # Amazon Web Services - Route 53
 
-Referring to a web server by its IP address, is fine for development, but it is not going to work for most users. Additionally, you want to create a secure (HTTPS) connection to your application, and that is not possible with just an IP address. Instead you want to use a domain name to represent your web application. That way you can make it easy to remember and also secure. In order for you to do this you need to buy a domain name, and then create DNS records with a DNS (Domain Name System) server.
+Referring to a web server by its IP address is fine for development, but it is not going to work for most users. Additionally, you want to create a secure (HTTPS) connection to your application, and that is not possible with just an IP address. Instead you want to use a domain name to represent your web application. That way you can make it easy to remember _and_ secure. In order for you to do this you need to buy a domain name, and then create DNS records with a DNS (Domain Name System) server.
 
-`Route 53` is the AWS service that handles everything DNS related. With Route 53 you can buy a domain name, host your domain on their DNS servers, and create DNS records.
+`Route 53` is the AWS service that handles everything DNS-related. With Route 53 you can buy a domain name, host your domain on their DNS servers, and create DNS records.
 
-⚠ You should already have an account with AWS from your work to rent a EC2 server instance. If you haven't done that work then go and create your account and server following the previous instruction.
+⚠ You should already have an account with AWS from your work to rent a EC2 server instance. If you haven't done that work, go create your account and server following the previous instruction.
 
 ## Purchasing a domain name
 
-AWS provides extensive documentation for all their services. You can find the documentation for [Registering a new domain](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-register.html) on their website. However, you may find the simplified directions below easier to follow, but if you run into trouble, or have additional questions, refer to the official documentation. Remember that you are leasing a domain name for a year, and so make sure it is a name that you would like. Also note that AWS credits do not apply to purchase of domain names.
+AWS provides extensive documentation for all their services. You can find the documentation for [registering a new domain](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-register.html) on their website. You may find the simplified directions below easier to follow, but if you run into trouble, or have additional questions, refer to the official documentation. Remember that you are leasing a domain name for a year, and so make sure it is a name that you would like. Also note that AWS credits do not apply to purchase of domain names.
 
 1. Open the AWS console in your browser and log in.
 1. Navigate to the `Route 53` service.
@@ -20,7 +20,10 @@ AWS provides extensive documentation for all their services. You can find the do
 
    ![AWS Find domain](webServerAWSFindDomain.png)
 
-1. Fill out the contact details. This information is sent to the authorized DNS registrar and is what shows up to the world for your domain name. Once registration is complete you can see this information using the console program `whois`. Make sure you fill in this information correctly. If you are using new contact information that a registry has never seen before it will require you to verify the email address. Follow the steps to verify your address.
+1. Fill out the contact details. This information is sent to the authorized DNS registrar and is what shows up to the world for your domain name. Once registration is complete you can see this information using the console program `whois`. Make sure you fill in this information correctly. Providing false information may cause the registrar to revoke your registration.
+
+   ⚠ If you are using new contact information that a registrar has never seen before, it will require you to verify the email address. Usually this means you will receive an email that you must respond to within 30 days. If you fail to do this your domain name will be removed from the registry without warning. Check your spam folder if you do not receive this email.
+
 1. Press `Continue`.
 1. Review everything and press `Complete Order`
 
@@ -32,21 +35,21 @@ Now that you own a domain name you can use it to create DNS records that will ma
 
 You will need the public IP address for your server. You can get the public IP address by opening the AWS browser console and viewing the details of your server on the EC2 service page.
 
-⚠ Note that the AWS browser console interface changes all of the time and so the directions below may not match exactly, but similar functionality should be there in some shape or form.
+⚠ Note that the AWS browser console interface changes all the time; the directions below may not match exactly, but similar functionality should be there in some shape or form.
 
 1. Open the AWS console in your browser and log in.
 1. Navigate to the `Route 53` service.
 1. Select the `Hosted zones` option from the menu on the left.
 1. You should see your domain name listed here. If it doesn't then the registration did not complete, or it is still pending. In that case go review the information found under `Domains > Pending requests`.
 1. Click on your domain name to view the details. This should display existing DNS records with types such as `NS`, and `SOA`.
-1. First we will create our root domain DNS record. This will associate your domain name with your server's IP address and make it so you can use your domain name in the browser to navigate to your server.
+1. First, create the root domain DNS record. This will associate your domain name with your server's IP address and allow you to use your domain name in the browser to navigate to your server.
    1. Press the `Create record` button.
    1. In the Value box enter the public IP address of your server.
    1. Press `Create records`
    1. A new `A` type record should appear in your list of records that represents the root domain name and your server's public IP address.
-1. Next we will create a DNS record that will map to your server for any subdomain of your root domain name. This is made possible because DNS allows you to specify wildcards for a DNS record.
+1. Next we will create a DNS record that will map to your server for any subdomain of your root domain name. This is possible because DNS allows you to specify wildcards for a DNS record.
    1. Press the `Create record` button.
-   1. In the `Record name` box enter the text `*`. This wildcard represents that any subdomain, that is not explicitly defined by another DNS record, will match this record.
+   1. In the `Record name` box enter the text `*`. This wildcard represents that any subdomain will match this record, so long as it is not explicitly defined by another DNS record.
    1. In the `Value` box enter the public IP address of your server.
    1. Press `Create records`
    1. A new `A` type record should appear in your list of records that represents the wildcard subdomain name and your server's public IP address.
@@ -67,7 +70,7 @@ This should show your web server's default page just like it did when you used t
 
 ![Browsing to hostname](webServerWithHostname.png)
 
-Note that your browser will warn you that the website is not secure. We will resolve that in future instruction when we configure Caddy to generate you a website certificate.
+Note that your browser will warn you that the website is not secure. We will resolve that in future instruction when we configure Caddy to generate a website certificate for you.
 
 ## Other record types
 
@@ -75,13 +78,21 @@ The additional `NS` and `SOA` type records that were listed for your domain name
 
 The start of authority (`SOA`) record provides contact information about the owner of this domain name.
 
-## ☑ Assignment
+## Lease a domain name
 
 1. Open the AWS browser console and log in.
 1. Use Route 53 to purchase a domain name.
 1. Set up your DNS records using Route 53. Make sure you have a record representing your root domain name, and a wild card subdomain.
 1. Test that you can access your server using your domain name and any subdomain name.
 
-Submit a URL for web server's domain name, along with a comment about something you found interesting, to the Canvas assignment.
+Don't forget to update your GitHub startup repository notes.md with all of the things you learned and want to remember.
 
-Don't forget to update your GitHub start up repository README.md with all of the things you learned and want to remember.
+## Common problems
+
+| Symptom                                                                     | Reason                                                                                                                                                                                                                                    |
+| --------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| I leased my domain name and set up DNS, but I can't hit it with the browser | Give it some time. Perhaps 10 minutes. Use `dig` or `nslookup` to see if the DNS records are publicly available. Check to see if the IP address is correct. Make sure the DNS records are correct.                                        |
+| The browser doesn't display my website                                      | Check that you are not trying to use `https`. Check that the browser hasn't inserted a `www` subdomain prefix. Some browsers will hide this. You must actually click on the domain name in the address bar to see what it is really using |
+| My root domain works, but not the `simon` or `startup` subdomains           | Check your DNS records. Make sure you created a wildcard `*.yourdomain` record.                                                                                                                                                           |
+| My `simon` or `start` up subdomains work, but not my root domain            | Check your DNS records. Make sure you have a root record.                                                                                                                                                                                 |
+| My domain name was working, but after 30 days it stopped.                   | Make sure you received and responded the the email from the registrar to verify your email address. Check your spam folder if you did not receive an email.                                                                               |

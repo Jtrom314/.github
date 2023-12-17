@@ -1,6 +1,6 @@
 # JavaScript destructuring
 
-📖 **Suggested reading**: [MDN Destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
+📖 **Deeper dive reading**: [MDN Destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
 
 Destructuring, not to be confused with destructing, is the process of pulling individual items out of an existing one, or removing structure. You can do this with either arrays or objects. This is helpful when you only care about a few items in the original structure.
 
@@ -27,7 +27,7 @@ console.log(b, c, others);
 // OUTPUT: 1, 2, [4,5]
 ```
 
-This works in a similar manner for objects. Except with arrays, the assignment of the associated value was assumed by the positions in the two arrays. When object destructuring, you explicitly specify the properties you want to pull from the source object.
+This works in a similar manner for objects, except with arrays, the assignment of the associated value was assumed by the positions in the two arrays. When destructuring objects, you explicitly specify the properties you want to pull from the source object.
 
 ```js
 const o = { a: 1, b: 'animals', c: ['fish', 'cats'] };
@@ -67,13 +67,5 @@ let a = 22;
 [a] = [1, 2, 3];
 
 console.log(a);
-// OUTPUT: a
+// OUTPUT: 1
 ```
-
-## ☑ Assignment
-
-Create a CodePen that uses both array and object destructuring.
-
-When you are done submit your CodePen URL, along with a comment about something you found interesting, to the Canvas assignment.
-
-Don't forget to update your GitHub start up repository README.md with all of the things you learned and want to remember.

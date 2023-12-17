@@ -1,8 +1,6 @@
 # Express
 
-<img src="expressIcon.png" width="75px" />
-
-📖 **Suggested reading**: [MDN Express/Node introduction](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/Introduction)
+📖 **Deeper dive reading**: [MDN Express/Node introduction](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/Introduction)
 
 In the previous instruction you saw how to use Node.js to create a simple web server. This works great for little projects where you are trying to quickly serve up some web content, but to build a production ready application you need a framework with a bit more functionality for easily implementing a full web service. This is where the Node package `Express` come in. Express provides support for:
 
@@ -20,7 +18,7 @@ Express was created by TJ Holowaychuk and is currently maintained by the [Open.j
 > — TJ Holowaychuk
 
 Everything in Express revolves around creating and using HTTP routing and middleware functions.
-You create an Express application by using NPM to install the Express package and then calling the `express` constructor to create the express application and listen for HTTP requests on a desired port.
+You create an Express application by using NPM to install the Express package and then calling the `express` constructor to create the Express application and listen for HTTP requests on a desired port.
 
 ```sh
 ➜ npm install express
@@ -33,15 +31,15 @@ const app = express();
 app.listen(8080);
 ```
 
-With the app object you can now add HTTP routing and middleware functions to the application.
+With the `app` object you can now add HTTP routing and middleware functions to the application.
 
 ## Defining routes
 
-HTTP endpoints are implemented in Express by defining routes that call a function based upon an HTTP path. The Express app object supports all of the HTTP verbs as functions on the object. For example, if you want to have a route function that handles an HTTP GET request for the URL path `/store/provo` you would call the `get` method on the app.
+HTTP endpoints are implemented in Express by defining routes that call a function based upon an HTTP path. The Express `app` object supports all of the HTTP verbs as functions on the object. For example, if you want to have a route function that handles an HTTP GET request for the URL path `/store/provo` you would call the `get` method on the app.
 
 ```js
 app.get('/store/provo', (req, res, next) => {
-  res.send({ name: 'provo' });
+  res.send({name: 'provo'});
 });
 ```
 
@@ -49,46 +47,44 @@ The `get` function takes two parameters, a URL path matching pattern, and a call
 
 The callback function has three parameters that represent the HTTP request object (`req`), the HTTP response object (`res`), and the `next` routing function that Express expects to be called if this routing function wants another function to generate a response.
 
-The express app compares the routing function patterns in the order that they are added to the Express app object. So if you have two routing functions with patterns that both match, the first one that was added will be called and given the next matching function in the `next` parameter.
+The Express `app` compares the routing function patterns in the order that they are added to the Express `app` object. So if you have two routing functions with patterns that both match, the first one that was added will be called and given the next matching function in the `next` parameter.
 
 In our example above we hard coded the store name to be `provo`. A real store endpoint would allow any store name to be provided as a parameter in the path. Express supports path parameters by prefixing the parameter name with a colon (`:`). Express creates a map of path parameters and populates it with the matching values found in the URL path. You then reference the parameters using the `req.params` object. Using this pattern you can rewrite our getStore endpoint as follows.
 
 ```js
 app.get('/store/:storeName', (req, res, next) => {
-  res.send({ name: req.params.storeName });
+  res.send({name: req.params.storeName});
 });
 ```
 
-If we run our JavaScript using node we can see the result when make an HTTP request using curl.
+If we run our JavaScript using `node` we can see the result when we make an HTTP request using `curl`.
 
 ```sh
 ➜ curl localhost:8080/store/orem
 {"name":"orem"}
 ```
 
-If you wanted an endpoint that used the POST or DELETE HTTP verb then you just use the `post` or `delete` function on the Express app object.
+If you wanted an endpoint that used the POST or DELETE HTTP verb then you just use the `post` or `delete` function on the Express `app` object.
 
 The route path can also include a limited wildcard syntax or even full regular expressions in path pattern. Here are a couple route functions using different pattern syntax.
 
 ```js
 // Wildcard - matches /store/x and /star/y
-app.put('/st*/:storeName', (req, res) =>
-  res.send({ update: req.params.storeName })
-);
+app.put('/st*/:storeName', (req, res) => res.send({update: req.params.storeName}));
 
 // Pure regular expression
-app.delete(/\/store\/(.+)/, (req, res) => res.send({ delete: req.params[0] }));
+app.delete(/\/store\/(.+)/, (req, res) => res.send({delete: req.params[0]}));
 ```
 
-Notice that in these examples the `next` parameter was omitted. Since we are not calling `next` we do not need to include it as a parameter. However, if you do not call next then no following middleware functions will be invoked for the request.
+Notice that in these examples the `next` parameter was omitted. Since we are not calling `next` we do not need to include it as a parameter. However, if you do not call `next` then no following middleware functions will be invoked for the request.
 
 ## Using middleware
 
-📖 **Suggested reading**: [Express Middleware](https://expressjs.com/en/resources/middleware.html)
+📖 **Deeper dive reading**: [Express Middleware](https://expressjs.com/en/resources/middleware.html)
 
-The standard [Mediator/Middleware](https://www.patterns.dev/posts/mediator-pattern/) design pattern has two pieces: A mediator and middleware. Middleware represents componentized pieces of functionality. The mediator loads the middleware components and determines their order of execution. When a request comes to the mediator it then passes the request around to the middleware components. Following this pattern, Express is the mediator, and middleware functions are the middleware components.
+The standard [Mediator/Middleware](https://www.patterns.dev/posts/mediator-pattern/) design pattern has two pieces: a mediator and middleware. Middleware represents componentized pieces of functionality. The mediator loads the middleware components and determines their order of execution. When a request comes to the mediator it then passes the request around to the middleware components. Following this pattern, Express is the mediator, and middleware functions are the middleware components.
 
-Express comes with a standard set of middleware functions. These provide functionality like routing, authentication, CORS, sessions, serving static web files, cookies, and logging. Some middleware functions are provided by default, and other ones must be installed using NPM before you can use it. You can also write your own middleware functions and use them with Express.
+Express comes with a standard set of middleware functions. These provide functionality like routing, authentication, CORS, sessions, serving static web files, cookies, and logging. Some middleware functions are provided by default, and other ones must be installed using NPM before you can use them. You can also write your own middleware functions and use them with Express.
 
 A middleware function looks very similar to a routing function. That is because routing functions are also middleware functions. The only difference is that routing functions are only called if the associated pattern matches. Middleware functions are always called for every HTTP request unless a preceding middleware function does not call `next`. A middleware function has the following pattern:
 
@@ -111,7 +107,7 @@ app.use((req, res, next) => {
 });
 ```
 
-Remember that the order that you add your middleware to the Express app object controls the order that the middleware functions are called. Any middleware that does not call the next function after doing its processing, stops the middleware chain from continuing.
+Remember that the order that you add your middleware to the Express app object controls the order that the middleware functions are called. Any middleware that does not call the `next` function after doing its processing, stops the middleware chain from continuing.
 
 ### Builtin middleware
 
@@ -121,7 +117,7 @@ In addition to creating your own middleware functions, you can use a built-in mi
 app.use(express.static('public'));
 ```
 
-Now if you create a subdirectory in your project directory and name it `public` you can serve up any static content that you would like. For example, you could create an `index.html` file that is the default content for your web service. Then when you call your web service without any path the index.html file will be returned.
+Now if you create a subdirectory in your project directory and name it `public` you can serve up any static content that you would like. For example, you could create an `index.html` file that is the default content for your web service. Then when you call your web service without any path the `index.html` file will be returned.
 
 ### Third party middleware
 
@@ -138,15 +134,15 @@ app.use(cookieParser());
 
 app.post('/cookie/:name/:value', (req, res, next) => {
   res.cookie(req.params.name, req.params.value);
-  res.send({ cookie: `${req.params.name}:${req.params.value}` });
+  res.send({cookie: `${req.params.name}:${req.params.value}`});
 });
 
 app.get('/cookie', (req, res, next) => {
-  res.send({ cookie: req.cookies });
+  res.send({cookie: req.cookies});
 });
 ```
 
-It is common for middleware functions to add functionality to the `req` object so that other middleware can access their functionality. You see this happening with the cookie-parser as it adds the `cookies` object for reading and setting cookies to the `req` object.
+It is common for middleware functions to add fields and functions to the `req` and `res` objects so that other middleware can access the functionality they provide. You see this happening when the `cookie-parser` middleware adds the `req.cookies` object for reading cookies, and also adds the `res.cookie` function in order to make it easy to add a cookie to a response.
 
 ## Error handling middleware
 
@@ -156,11 +152,11 @@ You can also add middleware for handling errors that occur. Error middleware loo
 function errorMiddlewareName(err, req, res, next)
 ```
 
-If you wanted to add a simple error handler for anything that might go wrong while process HTTP requests you could add the following.
+If you wanted to add a simple error handler for anything that might go wrong while processing HTTP requests you could add the following.
 
 ```js
 app.use(function (err, req, res, next) {
-  res.status(500).send({ type: err.name, message: err.message });
+  res.status(500).send({type: err.name, message: err.message});
 });
 ```
 
@@ -172,7 +168,7 @@ app.get('/error', (req, res, next) => {
 });
 ```
 
-Now if we use curl to call our error endpoint we can see that the response comes from the error middleware.
+Now if we use `curl` to call our error endpoint we can see that the response comes from the error middleware.
 
 ```sh
 ➜ curl localhost:8080/error
@@ -193,11 +189,11 @@ app.use(cookieParser());
 
 app.post('/cookie/:name/:value', (req, res, next) => {
   res.cookie(req.params.name, req.params.value);
-  res.send({ cookie: `${req.params.name}:${req.params.value}` });
+  res.send({cookie: `${req.params.name}:${req.params.value}`});
 });
 
 app.get('/cookie', (req, res, next) => {
-  res.send({ cookie: req.cookies });
+  res.send({cookie: req.cookies});
 });
 
 // Creating your own middleware - logging
@@ -211,14 +207,12 @@ app.use(express.static('public'));
 
 // Routing middleware
 app.get('/store/:storeName', (req, res) => {
-  res.send({ name: req.params.storeName });
+  res.send({name: req.params.storeName});
 });
 
-app.put('/st*/:storeName', (req, res) =>
-  res.send({ update: req.params.storeName })
-);
+app.put('/st*/:storeName', (req, res) => res.send({update: req.params.storeName}));
 
-app.delete(/\/store\/(.+)/, (req, res) => res.send({ delete: req.params[0] }));
+app.delete(/\/store\/(.+)/, (req, res) => res.send({delete: req.params[0]}));
 
 // Error middleware
 app.get('/error', (req, res, next) => {
@@ -226,7 +220,7 @@ app.get('/error', (req, res, next) => {
 });
 
 app.use(function (err, req, res, next) {
-  res.status(500).send({ type: err.name, message: err.message });
+  res.status(500).send({type: err.name, message: err.message});
 });
 
 // Listening to a network port
@@ -261,20 +255,20 @@ Create a web service with Express using the following steps.
    ```
 
 1. Create a file named `index.js` and paste the example code given above.
-1. Create a directory named `public` and add an index.html file with some basic html to the directory.
+1. Create a directory named `public` and add an `index.html` file with some basic html to the directory.
 
    ```sh
    mkdir public
    print '<h1>Hello express</h1>' > public/index.html
    ```
 
-1. Run your web service using node (`node index.js`)
+1. Run your web service using `node` (`node index.js`)
 
    ```sh
    node index.js
    ```
 
-1. Open a browser window (or use curl) and try out your web service by making requests to the endpoints
+1. Open another console window and use Curl to try out your web service by making requests to the endpoints.
 
    ```sh
    curl localhost:8080
@@ -286,4 +280,8 @@ Create a web service with Express using the following steps.
    curl -b cookies.txt localhost:8080/cookie
    ```
 
-When you are done write a description of something you found interesting to the Canvas assignment.
+1. Develop a mental model in your head about what these commands are doing and how your service is responding. Perhaps creating a [sequence diagram](https://sequencediagram.org/index.html#initialData=C4S2BsFMAIGVIE4DcQGMYCVIEcCukBnYAgKBIENVgB7BaAYVwXDMeYFoA+eZNSALmgBtAAoBVACoBdaAHois2pAC2JAHbVgMBCADmAC2DRqAMziIU6fuQAONgHQ3cwABQByecABUs-kSUAcuTKkG4ANAA6atAuCDhh0HEEAJTQALyciYT2BJBqACYuUQDe0Lg2+eRagnHYjuQIwQQ5NHFBIdAAvsnJANwkbOAAPEPs7DyWAtDFAETllVoz-DNKyjOdJEA) will help clarify the interaction if it is still unclear.
+
+   ![HTTP request](httpRequestSequenceDiagram.jpg)
+
+When you are done executing the above commands, copy the output from the curl commands and paste it into the Canvas assignment.

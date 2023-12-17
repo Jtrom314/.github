@@ -1,8 +1,8 @@
 # Debugging CSS
 
-📖 **Suggested reading**: [MDN Debugging CSS](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Debugging_CSS)
+📖 **Deeper dive reading**: [MDN Debugging CSS](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Debugging_CSS)
 
-CSS is extremely powerful, but sometimes is can be very frustrating to figure out why your page is not rendering the way that you expect. To help you understand why things are rendering the way that are you can use the browser's developer tool to inspect the CSS properties and visualize the HTML layout. Using the Google Chrome debugger you can access the developer tools by right click on the HTML page element that you want to debug and select the `inspect` option. We will demonstrate this by creating a directory that contains HTML (`index.html`) with a paragraph of text, and a CSS file (`index.css`) that uses flex to center the text in the CSS.
+CSS is extremely powerful, but sometimes is can be very frustrating to figure out why your page is not rendering the way that you expect. To help you understand why things are rendering the way they are you can use the browser's developer tool to inspect the CSS properties and visualize the HTML layout. Using the Google Chrome debugger you can access the developer tools by right clicking on the HTML page element that you want to debug and selecting the `inspect` option. You can experience this by creating a directory that contains the following content, composed of an HTML file (`index.html`) and a CSS file (`index.css`). This simple example has one paragraph of text and uses flex to center the text.
 
 ```html
 <!DOCTYPE html>
@@ -22,7 +22,6 @@ CSS is extremely powerful, but sometimes is can be very frustrating to figure ou
   border: thick solid blue;
   box-sizing: border-box;
   padding: 0.2em;
-  margin: 0;
   font-size: 24px;
   font-family: Arial;
 }
@@ -48,7 +47,7 @@ p {
 }
 ```
 
-Open the directory with VS Code and use the Live Server extension to view the HTML in the Chrome browser. In the browser, right click on the text and select `inspect`. This will open the debugger window and display the `Elements` tab. As you move your cursor over the the different elements you will visually see what the padding, borders, and margins are set to. The `Styles` pane shows all of the CSS properties applied to the currently selected element. If you scroll down the the bottom of the styles pane you will see the CSS box. By moving the cursor over the different parts of the CSS box it will highlight the different box parts in the browser window.
+Open the directory with VS Code and use the Live Server extension to view the HTML in the Chrome browser. In the browser, right click on the text and select `inspect`. This will open the debugger window and display the `Elements` tab. As you move your cursor over the different elements you will visually see what the padding, borders, and margins are set to. The `Styles` pane shows all of the CSS properties applied to the currently selected element. If you scroll down to the bottom of the styles pane you will see the CSS box. By moving the cursor over the different parts of the CSS box it will highlight the different box parts in the browser window.
 
 ![Debugging CSS](debugCssBrowser.jpg)
 
@@ -58,4 +57,15 @@ This example has a small problem. Each element has with a blue border and some p
 
 ![Debugging CSS demo](debuggingCssExample.gif)
 
+Now, notice that if you resize the browser so that it is wider, the centered text will appear left justified.
+
+![Debugging CSS centered text](debuggingCssCenteredText.jpg)
+
+See if you can figure out what the problem is, and then correct the CSS so that the text always appears centered in the box.
+
 Experiment with debugging and altering the CSS. Note that you can open up any website and use the debugger to see how they implemented their design and even do temporary alterations to the CSS properties to see how that impacts the display. Debugging other people's code is a great way to learn how to improve your CSS skills.
+
+
+### 🧧 Possible solution
+
+If you get stuck consider [this](https://developer.mozilla.org/en-US/docs/Web/CSS/text-align).

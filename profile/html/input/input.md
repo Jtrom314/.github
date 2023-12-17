@@ -1,6 +1,6 @@
 # HTML input elements
 
-📖 **Suggested reading**: [MDN Input element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input)
+📖 **Deeper dive reading**: [MDN Input element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input)
 
 From the very early days of HTML it contained elements for accepting the input of user data. These elements include the following:
 
@@ -65,8 +65,7 @@ The input element represents many different input types. You set the type of inp
 In order to create an input you specify the desired `type` attribute along with any other attribute associated with that specific input. Here is an example of a checked radio button and its associated label.
 
 ```html
-<label for="checkbox1">Check me</label>
-<input type="checkbox" name="varCheckbox" value="checkbox1" checked />
+<label for="checkbox1">Check me</label> <input type="checkbox" name="varCheckbox" value="checkbox1" checked />
 ```
 
 Most input elements share some common attributes. These include the following.
@@ -86,10 +85,16 @@ The following shows what the inputs look like when rendered. Don't worry about h
 
 Several of the input elements have validation built into them. This means that they will not accept a value that is not for example, a number, a URL, outside of a range, or an email address. You can also specify the `required` attribute on an input element to mark it as requiring a value before it can be submitted. The `pattern` attribute exists on `text`, `search`, `url`, `tel`, `email`, and `password` inputs. When present, the pattern attribute provides a regular expression that must match for the input to be considered as valid.
 
-You should also have validation built into your JavaScript that checks input data to ensures everything is valid before it is submitted. All of the input elements support functions for determining their validation state. Additionally, there are CSS style selectors for visualizing the validity of the input. In order to have a good user experience, it is critical that you provide sufficient user feedback early in the input process. A good design will give feedback as, or before, the user begins to input. A poor design will keep the user guessing as to why the data is not being accepted, or even if it was accepted.
+You should also have validation built into your JavaScript that checks input data to ensure everything is valid before it is submitted. All of the input elements support functions for determining their validation state. Additionally, there are CSS style selectors for visualizing the validity of the input. In order to have a good user experience, it is critical that you provide sufficient user feedback early in the input process. A good design will give feedback as, or before, the user begins to input. A poor design will keep the user guessing as to why the data is not being accepted, or even if it was accepted.
 
 ## ☑ Assignment
 
-This [CodePen](https://codepen.io/leesjensen/pen/dyVdNej) demonstrates all of the major input elements. Fork the pen and experiment.
+This [CodePen](https://codepen.io/leesjensen/pen/dyVdNej) demonstrates all of the major input elements. Fork the pen and do the following:
 
-When you are done submit your CodePen URL, along with a comment about something you found interesting, to the Canvas assignment.
+1. Replace the text input's placeholder with "your name here".
+1. Add an additional optgroup.
+1. Add an additional checkbox.
+1. Add an additional radio button.
+1. Change the color input to default to red.
+
+When you are done submit your CodePen URL to the Canvas assignment.

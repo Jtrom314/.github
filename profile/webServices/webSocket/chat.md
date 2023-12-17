@@ -52,14 +52,12 @@ myName.addEventListener('keyup', (e) => {
 });
 ```
 
-We then create a function that will update the displayed messages by selecting the element with the `chat-text` ID and appending the new message to its HTML. Security minded developers will realize that manipulating the DOM in this way will allow any chat user to take control of a peer's application. After you get everything working, if you are interested, see if you can exploit this weakness.
+We then create a function that will update the displayed messages by selecting the element with the `chat-text` ID and appending the new message to its HTML. Security-minded developers will realize that manipulating the DOM in this way will allow any chat user to execute code in the context of the application. After you get everything working, if you are interested, see if you can exploit this weakness.
 
 ```js
 function appendMsg(cls, from, msg) {
   const chatText = document.querySelector('#chat-text');
-  chatText.innerHTML =
-    `<div><span class="${cls}">${from}</span>: ${msg}</div>` +
-    chatText.innerHTML;
+  chatText.innerHTML = `<div><span class="${cls}">${from}</span>: ${msg}</div>` + chatText.innerHTML;
 }
 ```
 
@@ -142,8 +140,9 @@ const app = express();
 // Serve up our webSocket client HTML
 app.use(express.static('./public'));
 
-server = app.listen(8080, () => {
-  console.log(`Listening on 8080`);
+const port = process.argv.length > 2 ? process.argv[2] : 3000;
+server = app.listen(port, () => {
+  console.log(`Listening on ${port}`);
 });
 ```
 
@@ -225,9 +224,9 @@ ws.on('pong', () => {
 });
 ```
 
-Any connection that did not response will remain in the not alive state and get cleaned up on the next pass.
+Any connection that did not respond will remain in the not alive state and get cleaned up on the next pass.
 
-# ☑ Assignment
+# Experiment
 
 You can find the complete example described above in this [GitHub repository](https://github.com/webprogramming260/websocket-chat).
 
@@ -235,7 +234,5 @@ You can find the complete example described above in this [GitHub repository](ht
 1. Run `npm install` from a console window in the example directory.
 1. Open up the code in VS Code and review what it is doing.
 1. Run and debug the example by pressing `F5`. You may need to select node.js as the debugger the first time you run.
-1. Open multiple browser windows and point them to http://localhost:8080 and start chatting.
+1. Open multiple browser windows and point them to http://localhost:3000 and start chatting.
 1. Use the browser's debugger to view the WebSocket communication.
-
-When you are done submit a description of something you found interesting to the Canvas assignment.

@@ -1,11 +1,27 @@
 # CSS Practice
 
-Now that you know how to create CSS rules using selectors to apply declarations to HTML elements, it's time to experiment and see what you can come up with. Create a CodePen that uses multiple CSS rules to style an HTML page. Include some sort of simple animation.
-
-If you are looking for inspiration then here is one of my [favorite animations](https://codepen.io/leesjensen/pen/gOXZwEZ), this [animated burger menu](https://codepen.io/leesjensen/pen/bGKxVEv) is pretty incredible, and here is a [home page](https://codepen.io/leesjensen/pen/jOKvbrv) that is pure HTML and CSS. Don't feel like you need to build anything this complex but try and take things a little beyond your current abilities.
+Now that you know how to create CSS rules using selectors to apply declarations to HTML elements, it's time to experiment and see what you can come up with.
 
 ## ☑ Assignment
 
-When you are done upload the URL of your CodePen with a description of what you found interesting to the Canvas assignment.
+Create a fork of this [CodePen](https://codepen.io/leesjensen/pen/ExdZwgK) and use CSS to style it so that it looks like the following.
 
-Don't forget to update your GitHub start up repository README.md with all of the things you learned and want to remember.
+![CSS practice](cssPracticeAssignment.gif)
+
+When you are done upload the URL of your CodePen to the Canvas assignment.
+
+Don't forget to update your GitHub startup repository notes.md with all of the things you learned and want to remember.
+
+### 🧧 Possible solution
+
+If you get stuck here is a [possible solution](https://codepen.io/leesjensen/pen/VwEPMxQ).
+
+## Advanced examples
+
+If you are looking for some examples of where CSS can take you, check out these CodePens:
+
+- [Bouncy Ball](https://codepen.io/leesjensen/pen/gOXZwEZ)
+- [Animated burger menu](https://codepen.io/leesjensen/pen/bGKxVEv)
+- [Home page](https://codepen.io/leesjensen/pen/jOKvbrv)
+
+Don't feel like you need to build anything this complex but try and take things a little beyond your current abilities.

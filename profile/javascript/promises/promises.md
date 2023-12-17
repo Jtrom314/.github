@@ -1,6 +1,6 @@
 # Promises
 
-📖 **Suggested reading**:
+📖 **Deeper dive reading**:
 
 - [MDN Using Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises)
 - [MDN Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
@@ -98,7 +98,7 @@ We then chain the `then`, `catch` and `finally` functions to the coinToss object
 ```js
 coinToss
   .then((result) => console.log(`Coin toss result: ${result}`))
-  .catch((err) => console.log(`Error: ${result}`))
+  .catch((err) => console.log(`Error: ${err}`))
   .finally(() => console.log('Toss completed'));
 
 // OUTPUT:
@@ -112,6 +112,10 @@ Promises are the standard way to do asynchronous processing in JavaScript, but t
 
 ## ☑ Assignment
 
-This [CodePen](https://codepen.io/leesjensen/pen/RwJJKwj) uses promises to order pizzas. Create a fork of the pen and take some time to experiment with it. Then create your own example of using promises.
+This [CodePen](https://codepen.io/leesjensen/pen/RwJJKwj) uses promises to order pizzas. Create a fork of the pen and take some time to experiment with it. Modify the CodePen to include a new function that makes the pizza and include it in the promise chain.
 
-When you are done submit your CodePen URL, along with a comment about something you found interesting, to the Canvas assignment.
+When you are done submit your CodePen URL to the Canvas assignment.
+
+### 🧧 Possible solution
+
+If you get stuck here is a [possible solution](https://codepen.io/leesjensen/pen/vYVgpyL).

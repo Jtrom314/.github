@@ -58,11 +58,17 @@ That all changed when two Mozilla employees created a non-profit called `Let's E
 
 Now using a service like `Let's Encrypt`, and the IETF standard [ACME protocol](https://en.wikipedia.org/wiki/Automatic_Certificate_Management_Environment) that they pioneered, anyone who owns a domain name, can dynamically generate and renew a certificate for free. This incredible contribution of critical web technology has made the web safer, and more reliable, for everyone.
 
+Caddy uses Let's Encrypt to generate a web certificate every time an HTTPS request is made for a domain name that Caddy doesn't have a web certificate for. When this happens Caddy asks Let's Encrypt to verify that the domain for the requested certificate is actually owned by the requester. Let's Encrypt does that by telling the requester to return a specific digitally signed response for a temporary URL when an HTTP request to the domain is made. Let's Encrypt then makes the HTTP request, and if successful, issues the certificate to the requester.
+
+![Let's Encrypt cert generation](letsencryptCertIssue.jpg)
+
+If you are interested, you can learn about how the Let's Encrypt generates certificate from their [documentation](https://letsencrypt.org/how-it-works/).
+
 ## Enabling HTTPS
 
 Modern browsers now expect web servers to exclusively use HTTPS for all communication. In fact, the next version of HTTP (v3) only supports secure connections. For this reason, you should always support HTTPS for any web application that you build.
 
-You can obtain, and renew, a web certificate by enabling the ACME protocol for your web server and communicating with Let's Encrypt to generate the needed certificates. This is not difficult to do and may languages such as Rust, Node.js, or Go support this functionality by simply including an additional library.
+You can obtain, and renew, a web certificate by enabling the ACME protocol for your web server and communicating with Let's Encrypt to generate the needed certificates. This is not difficult to do, and many languages such as Rust, Node.js, or Go support this functionality by simply including an additional library.
 
 ### Caddy
 
@@ -83,14 +89,14 @@ For our work we are using the web service Caddy to act as a gateway to our diffe
    ➜  ssh -i ~/keys/production.pem ubuntu@myfunkychickens.click
    ```
 
-1. Edit Caddy's configuration (`Caddyfile`) file found in the ubuntu user's home directory. Note that since this file is owned by the root user you need to use `sudo` to elevate your user to have the rights to change the file.
+1. Edit Caddy's configuration (`Caddyfile`) file found in the ubuntu user's home directory.
 
    ```sh
    ➜  cd ~
-   ➜  sudo vi Caddyfile
+   ➜  vi Caddyfile
    ```
 
-1. Modify the Caddy rule for handling requests to port 80 (HTTP), to instead handle request for your domain name. By not specifying a port the rule will serve up files using port 443 (HTTPS), and any request to port 80 will automatically redirect the browser to port 443. Replace `:80` with your domain name (e.g. `myfunkychickens.click`).
+1. Modify the Caddy rule for handling requests to port 80 (HTTP), to instead handle request for your domain name. By not specifying a port the rule will serve up files using port 443 (HTTPS), and any request to port 80 will automatically redirect the browser to port 443. Replace `:80` with your domain name (e.g. `myfunkychickens.click`). Make sure that you delete the colon.
 
 1. Modify the Caddy rules that route the traffic for the two web applications that we will build. To do this replace the two places where `yourdomain` appears with your domain name (e.g. `myfunkychickens.click`).
 
@@ -125,7 +131,7 @@ For our work we are using the web service Caddy to act as a gateway to our diffe
 
 1. Save the file and exit VI (`:wq`)
 
-1. Restart Caddy so that your changes take effect.
+1. Restart Caddy so that your changes take effect. Note that since this requires you nto use `sudo` to elevate your user to have the rights to restart the gateway.
 
    ```sh
    sudo service caddy restart
@@ -137,8 +143,18 @@ If you open your browser and navigate to your domain name you will now see that 
 
 ## ☑ Assignment
 
+If you have not already leased a domain name then go back and review that instruction.
+
 Secure your web server communication by configuring Caddy to request a certificate from Let's Encrypt for you domain name.
 
-Submit a URL for web server's hostname, along with a comment about something you found interesting, to the Canvas assignment.
+Submit a URL for web server's hostname to the Canvas assignment.
 
-Don't forget to update your GitHub start up repository README.md with all of the things you learned and want to remember.
+Don't forget to update your GitHub startup repository notes.md with all of the things you learned and want to remember.
+
+## Common problems
+
+| Symptom                                                           | Reason                                                                                                                                                                                      |
+| ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| The browser doesn't display by website                            | Check that the browser hasn't inserted a `www` subdomain prefix. Some browsers will hide this. You must actually click on the domain name in the address bar to see what it is really using |
+| My root domain works, but not the `simon` or `startup` subdomains | Your Caddy file is not configured properly. Check for typos. Also make sure you removed the `:` from the start of the Caddy rule.                                                           |
+| My `simon` or `start` up subdomains work, but not my root domain  | Your Caddy file is not configured properly. Check for typos.                                                                                                                                |

@@ -1,14 +1,14 @@
 # JavaScript object and classes
 
-📖 **Suggested reading**: [MDN Classes in JavaScript](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Classes_in_JavaScript)
+📖 **Deeper dive reading**: [MDN Classes in JavaScript](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Classes_in_JavaScript)
 
-A JavaScript object represents a collection of name value pairs referred to as properties. The property name must be of type String or Symbol, but the value can be of any type. Objects also have common object-oriented functionality such as constructors, a this pointer, static properties and functions, and inheritance.
+A JavaScript object represents a collection of name value pairs referred to as properties. The property name must be of type String or Symbol, but the value can be of any type. Objects also have common object-oriented functionality such as constructors, a `this` pointer, static properties and functions, and inheritance.
 
 Objects can be created with the new operator. This causes the object's constructor to be called. Once declared you can add properties to the object by simply referencing the property name in an assignment. Any type of variable can be assigned to a property. This includes a sub-object, array, or function. The properties of an object can be referenced either with dot (`obj.prop`) or bracket notation (`obj['prop']`).
 
 ```js
-const obj = new Object();
-
+const obj = new Object({a:3});
+obj['b'] = 'fish';
 obj.c = [1, 2, 3];
 obj.hello = function () {
   console.log('hello');
@@ -96,7 +96,7 @@ Notice in the last example the use of the keyword `this` when we referred to the
 
 ## Classes
 
-You can use classes to define objects. Using a class clarifies the intent to create a reusable component rather than a one off object. Class declarations looks similar to declaring an object, but classes have an explicit constructor and assumed function declarations. The person object from above would look like the following when converted to a class.
+You can use classes to define objects. Using a class clarifies the intent to create a reusable component rather than a one-off object. Class declarations look similar to declaring an object, but classes have an explicit constructor and assumed function declarations. The person object from above would look like the following when converted to a class.
 
 ```js
 class Person {
@@ -163,8 +163,65 @@ console.log(e.print());
 
 ## ☑ Assignment
 
-Create a CodePen that uses objects and classes.
+Create a CodePen that starts with the following code
 
-When you are done submit your CodePen URL, along with a comment about something you found interesting, to the Canvas assignment.
+```js
+class Phone {
+  constructor(regEx) {
+    // Implement the constructor
+  }
 
-Don't forget to update your GitHub start up repository README.md with all of the things you learned and want to remember.
+  // Implement the Connected constant getter
+
+  connect(...numberParts) {
+    // Return an object if the number matches the regEx
+    // Otherwise thrown an exception
+  }
+}
+
+const phone = new Phone(/\d{3}-\d{3}-\d{4}/);
+
+const calls = [
+  { name: 'Li', number: ['333', '333', '3333'] },
+  { name: 'Juan', number: ['222', '222', '2222'] },
+  { name: 'Meg', number: ['8E26F', '811F'] },
+];
+
+for (const call of calls) {
+  try {
+    const { result } = phone.connect(...call.number);
+    if (result === Phone.Connected) {
+      console.log(`called ${call.name}`);
+    }
+  } catch (ex) {
+    console.log(`${ex.message} for ${call.name}`);
+  } finally {
+    console.log('done');
+  }
+}
+```
+
+and implements the following functionality of the Phone class:
+
+1. Has a constructor that accepts a regular expression as a parameter. The regular expression is stored on the object for future reference.
+1. Has a `Connected` getter that defines a constant for the class that is set to a value of 'connected'.
+1. Has a `connect` method that takes a variable number of values. The method joins the values together into a string that is separated by a '-' character and attempts to match it with the regular expression given in the constructor. If it fails it throws an exception. Otherwise it passes back an object that has an `id` and `result` property, where the result is set to Phone.Connected.
+
+Once you have implemented the Phone class. Examine the CodePen console output. It should look like this:
+
+```sh
+called Li
+done
+called Juan
+done
+invalid number for Meg
+done
+```
+
+When you get this result, submit your CodePen URL to the Canvas assignment.
+
+Don't forget to update your GitHub startup repository notes.md with all of the things you learned and want to remember.
+
+### 🧧 Possible solution
+
+If you get stuck here is a [possible solution](https://codepen.io/leesjensen/pen/yLRgPNa).

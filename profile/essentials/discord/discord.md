@@ -22,21 +22,28 @@ Discord is organized by servers and channels. If you used the above invite link 
 
 Our server contains the following channels for asking and answering questions.
 
-- github
-- html
-- css
-- javascript
-- node and express
-- aws
-- caddy
-- react
-- mongo
-- general
-- start up
+- **general**: Only use this if it doesn't fit anywhere else
+- **announcements**: Non-questions of interest to the whole class
+- **TA/common-problems**: A place for the TAs to put answers to questions you are likely to have
+- **Technology channels**
+  - github
+  - aws
+  - startup
+  - html
+  - css
+  - javascript
+  - node and express
+  - caddy
+  - react
+  - mongo
 
-You should use the channel that is most appropriate for your discussion. Do not ask questions in multiple channels. Only use `general` if it really is not specific to another channel.
+⚠ You should use the channel that is most appropriate for your discussion.
 
-If you are replying to someone, reply in a thread and not in the channel.
+⚠ Do not ask questions in multiple channels.
+
+⚠ Only use `general` if it really is not specific to another channel.
+
+⚠ If you are replying to someone multiple times then reply in a thread and not in the channel.
 
 ⚠ Make sure you review the instruction on [asking questions](../askingQuestions/askingQuestions.md) before you start asking questions.
 
@@ -48,4 +55,8 @@ When you want to talk with a TA either online or in-person you will use Discord 
 
 ## ☑ Assignment
 
-Get on the Discord server. Pick a channel that sounds interesting and read through some discussions. Find a good web programming related meme add it to `text channels > memes`. When you are done submit what you found interesting with Discord and make a suggestion about how we could use it better to the Canvas assignment.
+Get on the Discord server and review each of the channels and the TA area. Review the previous instruction on asking question. Give some thought about proper forum etiquette.
+
+Figure out who your assigned TA is by reviewing the [TA schedule](https://docs.google.com/spreadsheets/d/1g1AMtgvyfSwMgp85QcwHuy0mVR-nN3bIGI6XNEJWB1U/edit?usp=sharing). TAs are assigned by an alphabetical range. Find the range that contains the first letter of your last name. Using their Discord ID, open Discord to send them a direct message (DM) to introduce yourself.
+
+Once you are done, go over to Canvas and submit that you have completed this.

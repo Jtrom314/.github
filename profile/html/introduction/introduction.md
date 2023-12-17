@@ -1,8 +1,10 @@
 # Hypertext Markup Language
 
-<img src="htmlLogo.png" width=70/>
+![HTML Logo](htmlLogo.png)
 
-📖 **Suggested reading**:
+🎥 **Instruction video**: [Simon HTML](https://youtu.be/zg7eDNRMnWA)
+
+📖 **Deeper dive reading**:
 
 - [MDN HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
 - [W3C specification](https://html.spec.whatwg.org/multipage/) - This official specification is only for reference
@@ -19,7 +21,7 @@ The first thing you noticed is that this looks like a simple text document. That
 
 ## Elements and tags
 
-HTML `elements` are represented with enclosing `tags` that may enclose other elements or text. For example, the paragraph element, and its associated tag (`p`), designate that the text is a structural paragraph of text. When we talk about tags we are referring to a delimited textual name that we use to designate the start and end of an HTML element as it appears in an HTML document. Tags are delimited with the less than (`<`) and greater than (`>`) symbols. A closing tag will also have a backslash (`/`) before its name.
+HTML `elements` are represented with enclosing `tags` that may enclose other elements or text. For example, the paragraph element, and its associated tag (`p`), designate that the text is a structural paragraph of text. When we talk about tags we are referring to a delimited textual name that we use to designate the start and end of an HTML element as it appears in an HTML document. Tags are delimited with the less than (`<`) and greater than (`>`) symbols. A closing tag will also have a forward slash (`/`) before its name.
 
 ```html
 <p>Hello world</p>
@@ -137,14 +139,14 @@ You can include comments in your HTML files by starting the comment with `<!--` 
 
 HTML uses several reserved characters for defining its file format. If you want to use those characters in your content then you need to escape them using the `entity` syntax. For example, to display a less than symbol (`<`) you would instead use the less than entity (`&lt;`). You can also use the entity syntax to represent any unicode character.
 
-| Character | Entity        |
-| --------- | ------------- |
-| &amp;     | &amp;amp;     |
-| <         | &amp;lt;      |
-| >         | &amp;gt;      |
-| "         | &quot;        |
-| '         | &apos;        |
-| &#128512; | &amp;#128512; |
+| Character | Entity      |
+| --------- | ----------- |
+| &amp;     | `&amp;`     |
+| <         | `&lt;`      |
+| >         | `&gt;`      |
+| "         | `&quot;`    |
+| '         | `&apos;`    |
+| &#128512; | `&#128512;` |
 
 ## HTML Versions
 
@@ -158,16 +160,12 @@ Understanding when different HTML features were introduced helps you know what h
 | 1999 | HTML4   | external CSS                              |
 | 2014 | HTML5   | email, password, media, and semantic tags |
 
+## index.html
+
+By default a web server will display the HTML file named `index.html` when a web browser, such as Google Chrome, makes a request without asking for a specific HTML file. For example, when you ask for `https://google.com` in your web browser you will actually get back the HTML for the file `https://google.com/index.html`. For this reason, it is very common to name the main HTML file for your web application `index.html`.
+
 ## Rendering HTML
 
 You can save any HTML file to your computer's disk and then open the file using your browser. You can also open the HTML file in VS Code and use the Live Server extension to display the HTML. Another way to easily play with HTML is to use a sandbox like [CodePen](https://codepen.io). However, when you use CodePen it is not necessary to supply the HTML DocType header or the root `html` element since CodePen already assumes you are providing HTML. Here is our example HTML document rendered in CodePen.
 
 ![CodePen HTML introduction](htmlIntroductionCodePen.png)
-
-## ☑ Assignment
-
-Create a fork of this [codePen](https://codepen.io/leesjensen/pen/abKYRqN) and experiment.
-
-When you are done submit your CodePen URL, along with a comment about something you found interesting, to the Canvas assignment.
-
-Don't forget to update your GitHub start up repository README.md with all of the things you learned and want to remember.

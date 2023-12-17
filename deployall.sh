@@ -16,15 +16,18 @@ fi
 
 printf "\n-------------------------------\nDeploying all services to with $key\n-------------------------------\n"
 
+# Deploy each of the individual services
 cd ../simon-html && ./deployFiles.sh -k ${key} -h ${hostname} -s simon-html
 cd ../simon-css && ./deployFiles.sh -k ${key} -h ${hostname} -s simon-css
 cd ../simon-javascript && ./deployFiles.sh -k ${key} -h ${hostname} -s simon-javascript
-cd ../simon-fetch && ./deployFiles.sh -k ${key} -h ${hostname} -s simon-fetch
-cd ../simon-service && ./deployService.sh -k ${key} -h ${hostname} -s simon-service -p 3001
-cd ../simon-db && ./deployService.sh -k ${key} -h ${hostname} -s simon-db -p 3002
-cd ../simon-react && ./deployReact.sh -k ${key} -h ${hostname} -s simon-react -p 3003
+cd ../simon-service && npm install && ./deployService.sh -k ${key} -h ${hostname} -s simon-service
+cd ../simon-db && npm install && ./deployService.sh -k ${key} -h ${hostname} -s simon-db
+cd ../simon-login && npm install && ./deployService.sh -k ${key} -h ${hostname} -s simon-login
+cd ../simon-websocket && npm install && ./deployService.sh -k ${key} -h ${hostname} -s simon-websocket
+cd ../simon-react && npm install && ./deployReact.sh -k ${key} -h ${hostname} -s simon-react
+cd ../simon-pwa && npm install && ./deployReact.sh -k ${key} -h ${hostname} -s simon-pwa
 
 # Deploy the lastest to simon.{hostname} on port 3000
-cd ../simon-react && ./deployReact.sh -k ${key} -h ${hostname} -s simon
+cd ../simon-pwa && ./deployReact.sh -k ${key} -h ${hostname} -s simon
 
-echo cd ../webprogramming260
+cd ../webprogramming260
