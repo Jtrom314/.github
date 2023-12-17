@@ -58,18 +58,29 @@ Doing this will make this deliverable of your startup available from `https://st
 
 ## Grading Rubric
 
-- (Required) Simon HTML deployed to your production environment
-- (Required) A link to your GitHub startup repository prominently displayed on your application's home page
+The following are required for your startup to be considered on time to be graded (Note: if one of these requirements are missing, you will be required to resubmit your assignment)
+
+- (Required) Simon HTML deployed successfuly to your production environment
+-    // Can we move the grading of this to be something the TAs grade instead of a self grade? We've had a few students that would say that they deployed Simon but didn't and the TAs often wouldn't check
+- (Required) Startup deployed successfuly to your production environment
+-    // I feel that this is needed since there were quite a few students that submitteded their project to be considered 'on time' that didn't have their startup deployed. I feel that when the students submit, they are telling us that they have checked that everything is ready to go.
+- (Required) A link to your GitHub startup repository prominently displayed on your application's main page. Your Github must be accessable by every grading TA at the time of submission
 - (Required) Notes in your startup Git repository README.md file documenting what you modified and added with this deliverable. The TAs will only grade things that have been clearly described as being completed. Review the [voter app](https://github.com/webprogramming260/startup-example) as an example.
+-    // Can we enforce this requirement more foreefully this time around or if we aren't going to, can we remove this from what we are expecting the students to do? I find it odd that we say that it is required when we are told to not really care about it when we grade these assignments
+
+After you have completed the above requirements, your startup will be graded on the following critera
+
 - Properly structured HTML
   - 20% HTML pages for each component of your application
+  -    Each of your HTML pages *should* have a header, footer, and body sections
+  -    // I feel like it make sense to specifiy this here since the CSS assignment specifically references the Header, Footer, and body
   - 10% Links between pages as necessary
   - 10% Application textual content
-  - 10% Placeholder for 3rd party service calls
-  - 10% Application images
-  - 10% Login placeholder, including user name display
-  - 10% Database data placeholder showing content stored in the database
-  - 10% WebSocket data placeholder showing where realtime communication will go
+  - 10% Placeholder for at least one 3rd party service call
+  - 10% At least one application image
+  - 10% Login placeholder, including user name display and username/password input
+  - 10% Database data placeholder showing content stored in the database (Please specify within your README.md file where this is located)
+  - 10% WebSocket data placeholder showing where realtime communication will go (Please specify within your README.md file where this is located)
 - 10% - Multiple Git commits with meaningful comments.
 
 ## Go celebrate
